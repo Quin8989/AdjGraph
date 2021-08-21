@@ -343,7 +343,7 @@ public class AdjGraph {
 				currentNode = nextNode;
 				nextNode = map.get(map.get(currentNode.V_ID).visitedVia);
 			}
-		}
+		} else return null;
 		return path;
 	}
 
@@ -378,6 +378,44 @@ public class AdjGraph {
 			this.diff = diff;
 		}
 
+	}
+
+	/**
+	 * Creates a graph representing the shape of a maze in the form of bool[i][j] where:
+	 * 
+	 *  {{i = 0 , j = 0}, {i = 0 , j = 1}, {i = 0 , j = 2}... {i = 0 , j = n}
+	 * 	 {i = 1 , j = 0}, ...
+	 * 	 {i = 2 , j = 0}, ...
+	 * 	 .
+	 * 	 .
+	 *   .
+	 * 	 {i = k , j = 0}, ...								  {i = k , j = n}}
+	 * 
+	 * and the vertex ID's are:
+	 * 
+	 * {{0},    {1},    {2}, ... {n}
+	 *  {n+1},  {n+2},       ...
+	 *  {2n+1}, {2n+2},      ...
+	 *  .
+	 *  .
+	 *  .
+	 *  {kn-n}, 			 ... {kn}}
+	 * 
+	 * @param boolean[][], represents the maze, inner arrays must be same lengths, true = path, false = wall
+	 */
+	public void createMaze(boolean[][] maze){
+		for(int i = 0 ; i < maze.length; i++){
+			for(int j = 0 ; j < maze[0].length; j++){
+			Integer newPixel = addVertex();
+			if(j != 0 && maze[i][j] == true && maze[i][j-1] == true){ //add edge on horiz case
+				addUndirectedEdge(newPixel, newPixel -1, 1);
+			}
+			if(i != 0 && maze[i][j] == true && maze[i-1][j] == true){ //add edge on vert case
+				addUndirectedEdge(newPixel, newPixel -maze[0].length, 1);
+			}
+			}
+
+		}
 	}
 
 }
