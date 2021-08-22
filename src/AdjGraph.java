@@ -399,7 +399,7 @@ public class AdjGraph {
 	 *  .
 	 *  .
 	 *  .
-	 *  {kn-n}, 			 ... {kn}}
+	 *  {kn-(n+1)}, 		 ... {kn-1}}
 	 * 
 	 * @param boolean[][], represents the maze, inner arrays must be same lengths, true = path, false = wall
 	 */
