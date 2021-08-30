@@ -112,7 +112,7 @@ public class AdjGraph {
 		return true;
 	}
 
-	public Integer getdist(double x1, double x2, double y1, double y2) {
+	private Integer getdist(double x1, double x2, double y1, double y2) {
 		return (int) Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
 	}
 
@@ -136,6 +136,7 @@ public class AdjGraph {
 				break;
 			}
 		}
+		
 		return true;
 	}
 
